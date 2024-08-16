@@ -13,7 +13,8 @@
   "description": "",
   "dependencies": {
     "@pushprotocol/restapi": "^1.7.25",
-    "ethers": "^5.7.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2"
   }

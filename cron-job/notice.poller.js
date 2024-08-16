@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import graphqlConfig from './graphql/config.js';
 import { noticesQuery } from './graphql/queries.js';
 
-async function poolNotices() {
+async function pollNotices() {
   try {
     const response = await fetch(graphqlConfig.endpoint, {
       method: 'POST',
@@ -12,7 +12,7 @@ async function poolNotices() {
 
     const data = await response.json();
     if (response.ok) {
-      console.log("Fetched Notices:", data.data.notices.edges);
+      // console.log("Fetched Notices:", data.data.notices.edges);
       return data.data.notices.edges
     } else {
       console.error("GraphQL Error:", data.errors);
@@ -23,5 +23,5 @@ async function poolNotices() {
 }
 
 export {
-  poolNotices
+  pollNotices
 }
