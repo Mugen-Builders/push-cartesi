@@ -12,8 +12,31 @@ const noticesQuery = `
             }
         }
     }
-`;
+`
+
+const noticeWCursor = `
+    query notices($latestCursor: String) {
+        notices(after: $latestCursor) {
+            edges {
+                node {
+                    index
+                    input {
+                        index
+                        timestamp
+                    }
+                    payload
+                }
+                cursor
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+`
 
 export { 
-    noticesQuery
+    noticesQuery,
+    noticeWCursor
 }

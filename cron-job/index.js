@@ -20,7 +20,7 @@ function str2hex(str) {
 }
 
 // Run every X seconds
-cron.schedule('*/3 * * * * *', async () => {
+cron.schedule('*/30 * * * * *', async () => {
   console.log('Running the cron job every 30 seconds')
   let notices = await pollNotices()
 	
