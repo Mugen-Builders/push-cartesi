@@ -24,6 +24,9 @@ const noticeWCursor = `
                         index
                         timestamp
                     }
+                    proof {
+                        context
+                    }
                     payload
                 }
                 cursor

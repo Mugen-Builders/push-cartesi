@@ -68,9 +68,8 @@ async function handle_advance(data) {
     return "reject"
   }
 
-  if (!body.message || !body.target) {
-    await createReport("missing params message or target")
-    return "reject"
+  if (body.message && body.target) {
+    body.__push_notification__ = true
   }
 
   await createNotice(body, true)

@@ -19,7 +19,7 @@ await senderWallet.notification.subscribe(
 
 async function sendPush(target, content) {
   try {
-    const response = await senderWallet.channel.send(["*"], {
+    const response = await senderWallet.channel.send([target], {
       notification: {
         title: "Cartesi DApp Notification",
         body: content,
