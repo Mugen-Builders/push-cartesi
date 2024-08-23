@@ -2,9 +2,8 @@ import fetch from 'node-fetch';
 import graphqlConfig from './graphql/config.js';
 import { noticesQuery, noticeWCursor } from './graphql/queries.js';
 
-let latestCursor = null; // Initialize to 0 or load from persistent storage
-let latestProofCursor = null; // Initialize to 0 or load from persistent storage
-
+let latestCursor = null; 
+let latestProofCursor = null; 
 
 async function pollNotices() {
   try {
@@ -24,16 +23,13 @@ async function pollNotices() {
 
       let noticeList = []
       for (let notice of notices) {
-        if (!notice.node.proof) {
-          break // In case there is no proof we spot and wait 30 more seconds
-        }
         if (notice.node.payload.includes("225f5f707573685f6e6f74696669636174696f6e5f5f223a74727565")
           && notice.node.payload.includes("2274797065223a22696e7374616e7422")) {
           // Only add here if payload json contains "__push_notification__":true
           // && Only add here if payload json contains "type":"instant"
           noticeList.push(notice) 
         }
-        latestProofCursor = notice.cursor;
+        latestCursor = notice.cursor;
       }
       return noticeList
     } else {

@@ -1,6 +1,6 @@
 import cron from 'node-cron'
 import { ethers } from 'ethers';
-import { pollNotices, pollNoticesWithProof, pollVouchersWithProof } from './notice.poller.js'
+import { pollNotices, pollNoticesWithProof } from './notice.poller.js'
 import { sendPush } from './notification.sender.js';
 
 function strToJson(payload) {
@@ -20,8 +20,8 @@ function str2hex(str) {
 }
 
 // Run every X seconds
-cron.schedule('*/30 * * * * *', async () => {
-  console.log('Running the cron job every 30 seconds')
+cron.schedule('*/3 * * * * *', async () => {
+  console.log('Running the cron job every 3 seconds')
 
   let notices = await pollNotices()
   for (let notice of notices) {
