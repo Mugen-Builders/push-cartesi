@@ -22,10 +22,20 @@ async function pollNotices() {
       const data = await response.json();
       const notices = data.data.notices.edges;
 
-      notices.forEach(notice => {
-        latestCursor = notice.cursor;
-      })
-      return data.data.notices.edges
+      let noticeList = []
+      for (let notice of notices) {
+        if (!notice.node.proof) {
+          break // In case there is no proof we spot and wait 30 more seconds
+        }
+        if (notice.node.payload.includes("225f5f707573685f6e6f74696669636174696f6e5f5f223a74727565")
+          && notice.node.payload.includes("2274797065223a22696e7374616e7422")) {
+          // Only add here if payload json contains "__push_notification__":true
+          // && Only add here if payload json contains "type":"instant"
+          noticeList.push(notice) 
+        }
+        latestProofCursor = notice.cursor;
+      }
+      return noticeList
     } else {
       console.error("GraphQL Error:", data.errors);
     }
@@ -55,8 +65,11 @@ async function pollNoticesWithProof() {
         if (!notice.node.proof) {
           break // In case there is no proof we spot and wait 30 more seconds
         }
-        if (notice.node.payload.includes("225f5f707573685f6e6f74696669636174696f6e5f5f223a74727565")) {
-          noticeList.push(notice) // Only add here if payload json contains "__push_notification__":true
+        if (notice.node.payload.includes("225f5f707573685f6e6f74696669636174696f6e5f5f223a74727565")
+          && notice.node.payload.includes("2274797065223a2270726f6f6622")) {
+          // Only add here if payload json contains "__push_notification__":true
+          // && Only add here if payload json contains "type":"proof"
+          noticeList.push(notice) 
         }
         latestProofCursor = notice.cursor;
       }
