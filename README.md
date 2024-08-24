@@ -83,7 +83,7 @@ The type can be one of two values:
 The target field can be a wallet address to be the destination of the message or * for broadcasts to everyone who subscribes to the channel.
 
 ## Deploying 
-Once you deploy 
+Once you are ready to deploy you can generate a container with the Dockerfile inside the cron-job folder and [deploy to fly.io](https://fly.io/docs/launch/deploy/)
 
 ## Demo Video
 
