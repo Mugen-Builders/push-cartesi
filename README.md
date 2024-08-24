@@ -75,7 +75,7 @@ cartesi send generic
 Send as a string encoding 
 ```json
 {“type”:”instant”,”message”:”sample message”,”target”:”*”}
-
+```
 The type can be one of two values:
 - instant: The cron job will create a push notification as soon as the notice is created
 - proof: The push notification is only created when the epoch of that notice closes.
