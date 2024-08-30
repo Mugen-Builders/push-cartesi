@@ -64,7 +64,7 @@ cartesi build
 ```
 Perform
 ```
-cartesi start
+cartesi run
 ```
 
 #### Send test inputs
